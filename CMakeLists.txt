@@ -60,7 +60,7 @@ if(USE_SDL2)
    set(SDL_LIBRARY ${SDL2_LIBRARIES})
 else()
    find_package(SDL REQUIRED)
-endif() 
+endif()
 
 ##----------------------------------------------------------------------------|
 ## Targets                                                                    |
