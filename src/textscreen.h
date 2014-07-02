@@ -15,7 +15,7 @@
 #ifndef TEXTSCREEN_H
 #define TEXTSCREEN_H
 
-#include "../src/doomkeys.h"
+#include "doomkeys.h"
 #include "txt_main.h"
 
 #include "txt_button.h"
