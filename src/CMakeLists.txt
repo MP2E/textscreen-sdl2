@@ -6,6 +6,18 @@
 
 include_directories(${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/include ${SDL_INCLUDE_DIR})
 
+if(USE_SDL2)
+    set(SDL_SRC_FILES
+    txt_sdl2.c
+    txt_sdl2.h
+    )
+else()
+    set(SDL_SRC_FILES
+    txt_sdl.c
+    txt_sdl.h
+    )
+endif()
+
 add_library(textscreen
     textscreen.h
     txt_button.c
@@ -33,8 +45,6 @@ add_library(textscreen
     txt_radiobutton.h
     txt_scrollpane.c
     txt_scrollpane.h
-    txt_sdl.c
-    txt_sdl.h
     txt_separator.c
     txt_separator.h
     txt_smallfont.h
@@ -52,6 +62,7 @@ add_library(textscreen
     txt_window_action.h
     txt_window.c
     txt_window.h
+    ${SDL_SRC_FILES}
     )
 
 add_executable(calculator
