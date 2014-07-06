@@ -265,6 +265,8 @@ int TXT_Init(void)
 
     renderer = SDL_CreateRenderer(window, -1, NULL);
 
+    screentexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB888, SDL_TEXTUREACCESS_STREAMING, TXT_SCREEN_W * font->w, TXT_SCREEN_H * font->h);
+
     screenbuffer = SDL_CreateRGBSurface(0, TXT_SCREEN_W * font->w,
                                         TXT_SCREEN_H * font->h,
                                         8, 0, 0, 0, 0);
@@ -409,9 +411,9 @@ void TXT_UpdateScreenArea(int x, int y, int w, int h)
     rect.w = (x_end - x) * font->w;
     rect.h = (y_end - y) * font->h;
 
-    screentexture = SDL_CreateTextureFromSurface(renderer, screenbuffer);
-    SDL_RenderCopy(renderer, screentexture, &rect, NULL);
-    SDL_UpdateWindowSurfaceRects(window, &rect, 1);
+    SDL_UpdateTexture(screentexture, &rect, screenbuffer->pixels, screenbuffer->pitch);
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, screentexture, &rect, &rect);
     SDL_RenderPresent(renderer);
 }
 
